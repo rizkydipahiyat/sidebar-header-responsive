@@ -46,7 +46,7 @@ const Sidebar = ({ children }) => {
 		},
 	];
 	const activeClassName =
-		" rounded-md p-2 cursor-pointer bg-blue-800 hover:bg-blue-800 text-white text-sm items-center";
+		"rounded-md p-2 cursor-pointer bg-blue-800 hover:bg-blue-800 text-white text-sm items-center";
 	return (
 		<div className="flex">
 			<div
@@ -79,7 +79,9 @@ const Sidebar = ({ children }) => {
 							key={i}
 							className={`flex rounded-md p-2 cursor-pointer hover:bg-blue-800 text-white text-sm items-center `}
 						>
-							<span className="w-10 h-10 mt-5">{menu.icon}</span>
+							<NavLink to={`${menu.path}`} className="w-10 h-10 mt-5">
+								{menu.icon}
+							</NavLink>
 							<NavLink
 								className={`${
 									!isOpen && "hidden"

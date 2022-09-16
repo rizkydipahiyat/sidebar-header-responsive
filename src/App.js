@@ -12,14 +12,16 @@ function App() {
 	return (
 		<Router>
 			<Sidebar>
-				<Routes>
-					<Route path="/dashboard" element={<Dashboard />} />
-					<Route path="/about" element={<About />} />
-					<Route path="/comment" element={<Comment />} />
-					<Route path="/analytics" element={<Analytics />} />
-					<Route path="/product" element={<Product />} />
-					<Route path="/productList" element={<ProductList />} />
-				</Routes>
+				<div className="container py-6 px-6">
+					<Routes>
+						<Route path="/dashboard" element={<Dashboard />} />
+						<Route path="/about" element={<About />} />
+						<Route path="/comment" element={<Comment />} />
+						<Route path="/analytics" element={<Analytics />} />
+						<Route path="/product" element={<Product />} />
+						<Route path="/productList" element={<ProductList />} />
+					</Routes>
+				</div>
 			</Sidebar>
 		</Router>
 	);
