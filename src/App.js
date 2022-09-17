@@ -7,11 +7,12 @@ import Comment from "./pages/Comment";
 import Analytics from "./pages/Analytics";
 import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
+import Menus from "./Menus";
 
 function App() {
 	return (
 		<Router>
-			<Sidebar>
+			<Sidebar Menus={Menus}>
 				<div className="container py-6 px-6">
 					<Routes>
 						<Route path="/dashboard" element={<Dashboard />} />
