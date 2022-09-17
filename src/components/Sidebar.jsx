@@ -7,46 +7,68 @@ import {
 	IoLockOpen,
 	IoList,
 	IoChevronBackCircle,
+	IoChevronDownOutline,
 } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(true);
+	const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
 	const Menus = [
 		{
+			id: 1,
 			path: "/dashboard",
 			name: "Dashboard",
 			icon: <IoGrid />,
 		},
 		{
+			id: 2,
 			path: "/about",
 			name: "About",
 			icon: <IoPerson />,
+			spacing: true,
 		},
 		{
+			id: 3,
 			path: "/analytics",
 			name: "Analytics",
 			icon: <IoStatsChart />,
 		},
 		{
-			path: "/comment",
+			id: 4,
 			name: "Comment",
+			spacing: true,
 			icon: <IoChatbubble />,
+
+			subMenu: true,
+			subMenuItems: [
+				{
+					id: 1,
+					path: "/comment",
+					name: "Add",
+				},
+				{
+					id: 2,
+					path: "/comment",
+					name: "List",
+				},
+			],
 		},
 		{
+			id: 5,
 			path: "/product",
 			name: "Product",
+			spacing: true,
 			icon: <IoLockOpen />,
 		},
 		{
+			id: 6,
 			path: "/productList",
 			name: "Product List",
 			icon: <IoList />,
 		},
 	];
-	const activeClassName =
-		"rounded-md p-2 cursor-pointer bg-blue-800 hover:bg-blue-800 text-white text-sm items-center";
 	return (
 		<div className="flex">
 			<div
@@ -74,27 +96,57 @@ const Sidebar = ({ children }) => {
 					</h1>
 				</div>
 				<ul className="mt-6">
-					{Menus.map((menu, i) => (
-						<li
-							key={i}
-							className={`flex rounded-md p-2 cursor-pointer hover:bg-blue-800 text-white text-sm items-center `}
-						>
-							<NavLink to={`${menu.path}`} className="w-10 h-10 mt-5">
-								{menu.icon}
-							</NavLink>
-							<NavLink
-								className={`${
-									!isOpen && "hidden"
-								} -mt-1 origin-left duration-300`}
-								to={menu.path}
+					{Menus.map((menu) => (
+						<>
+							<li
+								key={menu.id}
+								className={`text-white text-sm flex items-center gap-4 cursor-pointer p-2 hover:bg-slate-300 rounded-md  ${
+									menu.spacing ? "mt-9" : "mt-5"
+								}`}
 							>
-								{({ isActive }) => (
-									<span className={isActive ? activeClassName : undefined}>
+								<NavLink
+									className="-mt-1 origin-left duration-300"
+									to={menu.path}
+								>
+									<span className="block float-left text-2xl">{menu.icon}</span>
+									<span
+										className={`text-base ml-5 font-medium flex-1 transition duration-500 ease-in-out ${
+											!isOpen && "hidden"
+										}`}
+									>
 										{menu.name}
 									</span>
+								</NavLink>
+								{menu.subMenu && isOpen && (
+									<IoChevronDownOutline
+										className={`${
+											isSubMenuOpen && "rotate-180"
+										} text-2xl ml-10`}
+										onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
+									/>
 								)}
-							</NavLink>
-						</li>
+							</li>
+							{menu.subMenu && isSubMenuOpen && isOpen && (
+								<ul>
+									{menu.subMenuItems.map((subMenuItem) => (
+										<li
+											key={subMenuItem.id}
+											className="text-white text-sm flex items-center gap-4 cursor-pointer p-2 ml-12 hover:bg-slate-300 rounded-md"
+										>
+											<NavLink to={`${subMenuItem.path}`}>
+												<span
+													className={`text-base ml-3 font-medium flex-1 transition duration-500 ease-in-out ${
+														!isOpen && "hidden"
+													}`}
+												>
+													{subMenuItem.name}
+												</span>
+											</NavLink>
+										</li>
+									))}
+								</ul>
+							)}
+						</>
 					))}
 				</ul>
 			</div>

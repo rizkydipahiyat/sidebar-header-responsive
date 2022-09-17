@@ -31,11 +31,9 @@ const Header = () => {
 							id="hamburger"
 							name="hamburger"
 							type="button"
-							className={
-								isActive
-									? "hamburger-active absolute right-4 block lg:hidden"
-									: "absolute right-4 block lg:hidden"
-							}
+							className={`${
+								isActive && "hamburger-active"
+							}  absolute right-4 block lg:hidden`}
 						>
 							<span className="hamburger-line duration origin-top-left transition ease-in-out"></span>
 							<span className="hamburger-line duration transition ease-in-out"></span>
@@ -43,54 +41,52 @@ const Header = () => {
 						</button>
 						<nav
 							id="nav-menu"
-							className={
-								isActive
-									? "absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static lg:block lg:max-w-full lg:rounded-none lg:bg-transparent lg:shadow-none "
-									: "absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static lg:block lg:max-w-full lg:rounded-none lg:bg-transparent lg:shadow-none "
-							}
+							className={`${
+								!isActive && "hidden"
+							} absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static lg:block lg:max-w-full lg:rounded-none lg:bg-transparent lg:shadow-none `}
 						>
 							<ul className="block lg:flex">
-								<li className="group">
+								<li className="hover:bg-blue-700 hover:text-white hover:rounded-md">
 									<a
 										href="#home"
-										className="mx-8 flex py-2 text-base text-dark group-hover:text-teal-700"
+										className="mx-8 flex py-2 text-base text-dark"
 									>
 										Beranda
 									</a>
 								</li>
-								<li className="group">
+								<li className="hover:bg-blue-700 hover:text-white hover:rounded-md">
 									<a
 										href="#about"
-										className="mx-8 flex py-2 text-base text-dark group-hover:text-teal-700"
+										className="mx-8 flex py-2 text-base text-dark"
 									>
 										About
 									</a>
 								</li>
-								<li className="group">
+								<li className="hover:bg-blue-700 hover:text-white hover:rounded-md">
 									<a
 										href="#portfolio"
-										className="mx-8 flex py-2 text-base text-dark group-hover:text-teal-700"
+										className="mx-8 flex py-2 text-base text-dark"
 									>
 										Portfolio
 									</a>
 								</li>
-								<li className="group">
+								<li className="hover:bg-blue-700 hover:text-white hover:rounded-md">
 									<a
 										href="#clients"
-										className="mx-8 flex py-2 text-base text-dark group-hover:text-teal-700"
+										className="mx-8 flex py-2 text-base text-dark"
 									>
 										Clients
 									</a>
 								</li>
-								<li className="group">
+								<li className="hover:bg-blue-700 hover:text-white hover:rounded-md">
 									<a
 										href="#contact"
-										className="mx-8 flex py-2 text-base text-dark group-hover:text-teal-700"
+										className="mx-8 flex py-2 text-base text-dark"
 									>
 										Contact
 									</a>
 								</li>
-								<li className="mt-3 flex items-center pl-8 lg:mt-0">
+								{/* <li className="mt-3 flex items-center pl-8 lg:mt-0">
 									<div className="flex">
 										<input
 											type="checkbox"
@@ -114,7 +110,7 @@ const Header = () => {
 											</svg>
 										</span>
 									</div>
-								</li>
+								</li> */}
 							</ul>
 						</nav>
 					</div>
