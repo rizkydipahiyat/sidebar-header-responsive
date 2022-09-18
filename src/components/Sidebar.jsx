@@ -10,13 +10,13 @@ const Sidebar = ({ children, Menus }) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
-	const active = "text-indigo-900";
+	const active = "bg-slate-300 rounded-md w-[240px] py-1 px-2 ";
 	return (
 		<>
 			<div className="flex">
 				<div
 					className={`${
-						isOpen ? "w-72" : "w-20"
+						isOpen ? "w-70" : "w-20"
 					} text-white bg-blue-500 h-screen p-5 pt-8 relative transition duration-500 ease-in-out`}
 				>
 					<IoChevronBackCircle
@@ -39,12 +39,11 @@ const Sidebar = ({ children, Menus }) => {
 						</h1>
 					</div>
 					<ul className="mt-6">
-						{Menus.map((menu) => (
-							<>
+						{Menus.map((menu, index) => (
+							<React.Fragment key={index}>
 								<li
-									key={menu.id}
-									className={`text-white text-sm flex items-center gap-4 cursor-pointer p-2 hover:bg-slate-300 rounded-md visited:bg-slate-300  ${
-										menu.spacing ? "mt-9" : "mt-5"
+									className={`text-white relative text-sm flex items-center gap-x-4 cursor-pointer p-1 hover:bg-slate-300 rounded-md visited:bg-slate-300  ${
+										menu.spacing ? "mt-9" : "mt-7"
 									}`}
 								>
 									<NavLink
@@ -53,18 +52,22 @@ const Sidebar = ({ children, Menus }) => {
 									>
 										{({ isActive }) => (
 											<>
-												<span className="block float-left text-2xl">
-													{menu.icon}
-												</span>
-												<span
+												<div
 													className={`${isActive ? active : undefined} ${
-														menu.id === 4 ? "text-slate-100" : ""
-													} text-base ml-5 font-medium flex-1 transition duration-500 ease-in-out ${
-														!isOpen && "hidden"
-													}`}
+														!isOpen && "bg-inherit"
+													} ${menu.id === 4 ? "bg-inherit" : ""}`}
 												>
-													{menu.name}
-												</span>
+													<span className="block float-left text-2xl">
+														{menu.icon}
+													</span>
+													<span
+														className={`  text-base ml-5 font-medium flex-1 transition duration-500 ease-in-out ${
+															!isOpen && "hidden"
+														}`}
+													>
+														{menu.name}
+													</span>
+												</div>
 											</>
 										)}
 									</NavLink>
@@ -72,32 +75,36 @@ const Sidebar = ({ children, Menus }) => {
 										<IoChevronDownOutline
 											className={`${
 												isSubMenuOpen && "rotate-180"
-											} text-2xl ml-10`}
+											} text-2xl ml-[200px] absolute`}
 											onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
 										/>
 									)}
 								</li>
 								{menu.subMenu && isSubMenuOpen && isOpen && (
 									<ul>
-										{menu.subMenuItems.map((subMenuItem) => (
+										{menu.subMenuItems.map((subMenuItem, index) => (
 											<li
-												key={subMenuItem.name}
+												key={index}
 												className="text-white text-sm flex items-center gap-4 cursor-pointer p-2 ml-12 hover:bg-slate-300 rounded-md"
 											>
 												<NavLink to={`${subMenuItem.path}`}>
-													<span
-														className={`text-base ml-3 font-medium flex-1 transition duration-500 ease-in-out ${
-															!isOpen && "hidden"
-														}`}
-													>
-														{subMenuItem.name}
-													</span>
+													{({ isActive }) => (
+														<span
+															className={`${
+																isActive ? active : undefined
+															} text-base ml-3 font-medium flex-1 transition duration-500 ease-in-out ${
+																!isOpen && "hidden"
+															}`}
+														>
+															{subMenuItem.name}
+														</span>
+													)}
 												</NavLink>
 											</li>
 										))}
 									</ul>
 								)}
-							</>
+							</React.Fragment>
 						))}
 					</ul>
 				</div>

@@ -42,7 +42,7 @@ const Menus = [
 			},
 			{
 				id: 2,
-				path: "/comment",
+				path: "/list",
 				name: "List",
 			},
 		],

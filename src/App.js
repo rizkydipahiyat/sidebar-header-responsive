@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Sidebar from "./components/Sidebar";
 import About from "./pages/About";
@@ -11,7 +11,7 @@ import Menus from "./Menus";
 
 function App() {
 	return (
-		<Router>
+		<BrowserRouter>
 			<Sidebar Menus={Menus}>
 				<div className="container py-6 px-6">
 					<Routes>
@@ -24,7 +24,7 @@ function App() {
 					</Routes>
 				</div>
 			</Sidebar>
-		</Router>
+		</BrowserRouter>
 	);
 }
 
